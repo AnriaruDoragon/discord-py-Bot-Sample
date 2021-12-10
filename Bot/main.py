@@ -24,9 +24,9 @@ async def modules_group(ctx:commands.Context):
                 modules.remove(lm)
         if len(loaded) > 0:
             embed.add_field(name="✅ Loaded", value=", ".join(loaded), inline=True)
-        if len(modules):
+        if len(modules) > 0:
             embed.add_field(name="❌ Unloaded", value=", ".join(modules), inline=True)
-        else:
+        if len(modules) == 0 and len(loaded) == 0:
             embed.description = "No modules found."
         await ctx.reply(embed=embed)
 
