@@ -1,9 +1,5 @@
-import logging, time, os
-from sys import modules
-import discord
-from discord import embeds
+import os, time, logging, discord
 from discord.ext import commands
-from discord.ext.commands.errors import NoEntryPointError
 
 from config.secret import token
 from config.logging import *
