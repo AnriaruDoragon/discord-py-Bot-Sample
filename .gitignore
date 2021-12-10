@@ -1,6 +1,6 @@
 # Sensitive data
 Bot/config/secret.py
-*.log
+Bot/Data
 
 
 
