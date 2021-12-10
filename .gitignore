@@ -1,5 +1,5 @@
 # Sensitive data
-config/secret.py
+Bot/config/secret.py
 *.log
 
 
