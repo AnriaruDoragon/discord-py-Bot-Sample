@@ -42,7 +42,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     @commands.has_guild_permissions(manage_messages=True)
     async def filter_group(self, ctx):
         if ctx.invoked_subcommand == None:
-            await self.filter_list(ctx)
+            pass
     
     @filter_group.command(name="list", description="Get all banned words for this server.")
     @commands.has_guild_permissions(manage_messages=True)
