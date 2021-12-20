@@ -109,7 +109,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     @filter_group.command(name="check", description="Check if the following text or message violates the filter for this server.")
     @commands.has_guild_permissions(manage_messages=True)
     async def filter_check(self, ctx, message:typing.Optional[discord.Message]=None):
-        if message == Noone:
+        if message == None:
             message = ctx.message
 
         triggered = self.CheckMessage(message, True)
@@ -119,7 +119,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
             embed.description = "Triggered words:\n" + " ".join(["`{0}`".format(word) for word in triggered])
         else:
             embed.description = "It seems okay to me."
-        
+
         await ctx.reply(embed=embed)
 
 def setup(client):
