@@ -13,7 +13,6 @@ client.data = Database()
 @client.event
 async def on_ready():
     logging.info("{0.user} is Ready!".format(client))
-    client.load_extension("Modules.Filter")
 
 @client.group(name="modules")
 @commands.has_guild_permissions(administrator=True)
