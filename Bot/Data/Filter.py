@@ -9,8 +9,6 @@ class Filter:
             self.db.connection.commit()
         except sqlite3.Error as error:
             logging.critical(error)
-        else:
-            logging.info("Filter initialized.")
     
     def Get(self, Guild:int):
         try:
