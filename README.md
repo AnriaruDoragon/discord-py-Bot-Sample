@@ -20,13 +20,11 @@ On how to use and build cogs you can find in the [docs for discord.py](https://d
 |:---------------|:--------------------|:--------------------------------------------------------------------------------------------------------------------------------|
 | help           |                     | Shows the help message.                                                                                                         |
 | log            |                     | Returns the client log for the current session.                                                                                 |
-|                |                     |                                                                                                                                 |
 | modules        | None or subcommands | If no arguments are provided, invokes `modules list`.                                                                           |
 | modules list   |                     | Returns available modules and defines Loaded and Not Loaded modules.                                                            |
 | modules load   | Module name         | Loads the module with the following name.                                                                                       |
 | modules unload | Module name         | Unloads the module with the following name.                                                                                     |
 | modules reload | Module name         | Reloads the module with the following name. Applies all changes in the file. If the module is not loaded invokes `module load`. |
-|                |                     |                                                                                                                                 |
 | filter         | Subcommands         | Does nothing without subcommands.                                                                                               |
 | filter list    |                     | Returns the list of banned words for the current server in DMs.                                                                 |
 | filter add     | \*Words             | Adds words to the filter for the current server — separate words with spaces.                                                   |
