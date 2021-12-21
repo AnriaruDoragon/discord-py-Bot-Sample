@@ -5,6 +5,18 @@ I'm trying to show my skill in Python here after years of self-education.
 
 Thanks 💜💙
 
+## Table of Contents
+- [Disclaimer](#disclaimer)
+- [Table of Contents](#table-of-contents)
+- [Bot Description](#discord-bot-sample-on-discordpy)
+  - [Commands](#commands)
+- [Technical things](#tech)
+  - [Libraries & Versions](#versions)
+  - [Missing files](#missing-files)
+  - [Config files](#config-files)
+  - [Instalation and usage](#instalation-and-usage)
+- [P.S.](#ps)
+
 # Discord bot sample on discord.py
 This is a simple bot for your discord servers managed by cogs (modules).
 
@@ -16,26 +28,28 @@ You can add your modules if you want.
 On how to use and build cogs you can find in the [docs for discord.py](https://discordpy.readthedocs.io/en/stable/ext/commands/cogs.html#quick-example).
 
 ### Commands
-| Command        | Arguments           | Description                                                                                                                     |
-|:---------------|:--------------------|:--------------------------------------------------------------------------------------------------------------------------------|
-| help           |                     | Shows the help message.                                                                                                         |
-| log            |                     | Returns the client log for the current session.                                                                                 |
-| modules        | None or subcommands | If no arguments are provided, invokes `modules list`.                                                                           |
-| modules list   |                     | Returns available modules and defines Loaded and Not Loaded modules.                                                            |
-| modules load   | Module name         | Loads the module with the following name.                                                                                       |
-| modules unload | Module name         | Unloads the module with the following name.                                                                                     |
-| modules reload | Module name         | Reloads the module with the following name. Applies all changes in the file. If the module is not loaded invokes `module load`. |
-| preload        | Subcommands         | Does nothing without subcommands.                                                                                               |
-| preload list   |                     | Returns the list of the preloaded modules.                                                                                      |
-| preload add    | Module name         | Adds the module to the preload list to load this module on start. (Wrong spelled modules might not load. Check your log)        |
-| preload remove | Module name         | Removes the module from the preload list.                                                                                       |
-| filter         | Subcommands         | Does nothing without subcommands.                                                                                               |
-| filter list    |                     | Returns the list of banned words for the current server in DMs.                                                                 |
-| filter add     | \*Words             | Adds words to the filter for the current server — separate words with spaces.                                                   |
-| filter remove  | \*Words             | Removes words from the filter for the current server.                                                                           |
-| filter check   | Text or Message ID  | Checks the provided text (or the message) for the banned words and returns all the triggered words.                             |
+| Command        | Arguments           | Description                                                                                                                      |
+|:---------------|:--------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| help           |                     | Shows the help message.                                                                                                          |
+| log            |                     | Returns the client log for the current session.                                                                                  |
+| modules        | None or subcommands | If no arguments are provided, invokes `modules list`.                                                                            |
+| modules list   |                     | Returns available modules and defines Loaded and Not Loaded modules.                                                             |
+| modules load   | Module name         | Loads the module with the following name.                                                                                        |
+| modules unload | Module name         | Unloads the module with the following name.                                                                                      |
+| modules reload | Module name         | Reloads the module with the following name. Applies all changes in the file. If the module is not loaded invokes `modules load`. |
+| preload        | Subcommands         | Does nothing without subcommands.                                                                                                |
+| preload list   |                     | Returns the list of the preloaded modules.                                                                                       |
+| preload add    | Module name         | Adds the module to the preload list to load this module on start. (Wrong spelled modules might not load. Check your log.)        |
+| preload remove | Module name         | Removes the module from the preload list.                                                                                        |
+| filter         | Subcommands         | Does nothing without subcommands.                                                                                                |
+| filter list    |                     | Returns the list of banned words for the current server in DMs.                                                                  |
+| filter add     | \*Words             | Adds words to the filter for the current server — separate words with spaces.                                                    |
+| filter remove  | \*Words             | Removes words from the filter for the current server.                                                                            |
+| filter check   | Text or Message ID  | Checks the provided text (or the message) for the banned words and returns all the triggered words.                              |
 
 ## Tech
+If you want to use it...
+
 ### Versions
 | Library    | Version                                                       |
 |:-----------|:-------------------------------------------------------------:|
