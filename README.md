@@ -25,6 +25,10 @@ On how to use and build cogs you can find in the [docs for discord.py](https://d
 | modules load   | Module name         | Loads the module with the following name.                                                                                       |
 | modules unload | Module name         | Unloads the module with the following name.                                                                                     |
 | modules reload | Module name         | Reloads the module with the following name. Applies all changes in the file. If the module is not loaded invokes `module load`. |
+| preload        | Subcommands         | Does nothing without subcommands.                                                                                               |
+| preload list   |                     | Returns the list of the preloaded modules.                                                                                      |
+| preload add    | Module name         | Adds the module to the preload list to load this module on start. (Wrong spelled modules might not load. Check your log)        |
+| preload remove | Module name         | Removes the module from the preload list.                                                                                       |
 | filter         | Subcommands         | Does nothing without subcommands.                                                                                               |
 | filter list    |                     | Returns the list of banned words for the current server in DMs.                                                                 |
 | filter add     | \*Words             | Adds words to the filter for the current server — separate words with spaces.                                                   |
