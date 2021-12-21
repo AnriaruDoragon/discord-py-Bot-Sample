@@ -6,7 +6,7 @@ class PreloadModules(commands.Cog, name="PreloadModules", description="Manage pr
     
     def __init__(self, client):
         self.client = client
-        self.preload = PreloadDB(client.data)
+        self.preload = client.preload
 
     @commands.group(name="preload", description="Manage preload modules.")
     @commands.has_guild_permissions(administrator=True)

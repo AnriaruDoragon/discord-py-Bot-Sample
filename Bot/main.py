@@ -1,6 +1,7 @@
-import logging, time, os, discord
+import discord, os, logging, time
 from discord.ext import commands
 from Data.Data import Database
+from Data.Data import PreloadModules as PreloadDB
 
 from config.secret import token
 from config.logging import *
@@ -9,10 +10,30 @@ from config.client import *
 logging.basicConfig(filename=log_file, filemode="w", encoding=log_encoding, format=log_format, datefmt=log_dateformat, level=logging.INFO)
 client = commands.Bot(command_prefix=command_prefix, owner_id=owner_id)
 client.data = Database()
+client.preload = PreloadDB(client.data)
+
+async def PreloadModules():
+    try:
+        client.load_extension("Modules.PreloadModules")
+    except commands.ExtensionAlreadyLoaded:
+        return
+    except BaseException as error:
+        logging.critical(error)
+    else:
+        modules = client.preload.Get()
+        if len(modules) > 0:
+            for module in modules:
+                try:
+                    client.load_extension("Modules.{0}".format(module))
+                except BaseException as error:
+                    logging.error(error)
+                else:
+                    logging.info("Module {0} loaded.".format(module))
 
 @client.event
 async def on_ready():
     logging.info("{0.user} is Ready!".format(client))
+    await PreloadModules()
 
 @client.group(name="modules")
 @commands.has_guild_permissions(administrator=True)
