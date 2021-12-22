@@ -1,7 +1,7 @@
 import discord, os, logging, time
 from discord.ext import commands
 from Data.Data import Database
-from Data.Data import PreloadModules as PreloadDB
+from Data.PreloadModules import PreloadModules as PreloadDB
 
 from config.secret import token
 from config.logging import *
@@ -10,7 +10,6 @@ from config.client import *
 logging.basicConfig(filename=log_file, filemode="w", encoding=log_encoding, format=log_format, datefmt=log_dateformat, level=logging.INFO)
 client = commands.Bot(command_prefix=command_prefix, owner_id=owner_id)
 client.data = Database()
-client.preload = PreloadDB(client.data)
 
 async def PreloadModules():
     try:
@@ -19,16 +18,6 @@ async def PreloadModules():
         return
     except BaseException as error:
         logging.critical(error)
-    else:
-        modules = client.preload.Get()
-        if len(modules) > 0:
-            for module in modules:
-                try:
-                    client.load_extension("Modules.{0}".format(module))
-                except BaseException as error:
-                    logging.error(error)
-                else:
-                    logging.info("Module {0} loaded.".format(module))
 
 @client.event
 async def on_ready():
@@ -50,9 +39,9 @@ async def modules_list(ctx):
     modules = [module[:-3] for module in os.listdir("Bot/Modules") if module.endswith(".py") and module[:-3] not in loaded]
 
     if len(loaded) > 0:
-        embed.add_field(name="✅ Loaded", value=", ".join(loaded), inline=True)
+        embed.add_field(name="✅ Loaded", value="\n".join(["`{0}`".format(module) for module in loaded]), inline=True)
     if len(modules) > 0:
-        embed.add_field(name="❌ Unloaded", value=", ".join(modules), inline=True)
+        embed.add_field(name="❌ Unloaded", value="\n".join(["`{0}`".format(module) for module in modules]), inline=True)
     if len(embed.fields) == 0:
         embed.description = "No modules found."
 
@@ -61,31 +50,31 @@ async def modules_list(ctx):
 @modules_group.command(name="load", description="Load a module.")
 @commands.has_guild_permissions(administrator=True)
 async def load_module(ctx, module:str):
-    embed = discord.Embed(title="Loading {0}".format(module))
+    embed = discord.Embed(color=color, title="Loading {0}".format(module))
     try:
         client.load_extension("Modules.{0}".format(module))
     except commands.ExtensionNotFound:
-        embed.description = "Module {0} is not found.".format(module)
+        embed.description = "The module `{0}` is not found.".format(module)
         embed.color = 0xFF0000
     except commands.ExtensionAlreadyLoaded:
-        embed.description = "Module {0} is already loaded.".format(module)
+        embed.description = "The module `{0}` is already loaded.".format(module)
         embed.color = 0xFF0000
     except commands.NoEntryPointError:
-        embed.description = "Module {0} doesn't have a setup function.".format(module)
+        embed.description = "The module `{0}` doesn't have a setup function.".format(module)
         embed.color = 0xFF0000
     except commands.ExtensionFailed:
-        embed.description = "Module {0} is broken.".format(module)
+        embed.description = "The module `{0}` is broken.".format(module)
         embed.color = 0xFF0000
     else:
-        embed.description = "Module {0} is loaded.".format(module)
-        embed.color = color
+        embed.description = "The module `{0}` is loaded.".format(module)
+        logging.info("{0} - The module '{1}' is loaded.".format(ctx.author.id, module))
     finally:
         await ctx.reply(embed=embed)
 
 @modules_group.command(name="unload", description="Unload a module.")
 @commands.has_guild_permissions(administrator=True)
 async def unload_module(ctx, module:str):
-    embed = discord.Embed(title="Unloading {0}".format(module))
+    embed = discord.Embed(color=color, title="Unloading {0}".format(module))
     try:
         client.unload_extension("Modules.{0}".format(module))
     except commands.ExtensionNotFound:
@@ -96,14 +85,14 @@ async def unload_module(ctx, module:str):
         embed.color = 0xFF0000
     else:
         embed.description = "Module {0} is unloaded.".format(module)
-        embed.color = color
+        logging.info("{0} - The module '{1}' is unloaded.".format(ctx.author.id, module))
     finally:
         await ctx.reply(embed=embed)
 
 @modules_group.command(name="reload", description="Reload a module.")
 @commands.has_guild_permissions(administrator=True)
 async def reload_module(ctx, module:str):
-    embed = discord.Embed(title="Reloading {0}".format(module))
+    embed = discord.Embed(color=color, title="Reloading {0}".format(module))
     to_load = False
     try:
         client.reload_extension("Modules.{0}".format(module))
@@ -122,7 +111,7 @@ async def reload_module(ctx, module:str):
         embed.color = 0xFF0000
     else:
         embed.description = "Module {0} is reloaded.".format(module)
-        embed.color = color
+        logging.info("{0} - The module '{1}' is reloaded.".format(ctx.author.id, module))
     finally:
         bot_msg = await ctx.reply(embed=embed)
         if to_load:
@@ -132,6 +121,7 @@ async def reload_module(ctx, module:str):
 @commands.has_guild_permissions(administrator=True)
 async def get_logs(ctx):
     await ctx.reply(file=discord.File(log_file, "client.log"))
+    logging.info("{0} - Log request.".format(ctx.author.id))
 
 while True:
     try:

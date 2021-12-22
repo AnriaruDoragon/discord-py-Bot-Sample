@@ -70,6 +70,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     @filter_group.command(name="add", description="Add words to the filter.")
     @commands.has_guild_permissions(manage_messages=True)
     async def filter_add(self, ctx, *words):
+        embed = discord.Embed(color=color, title="Add words to the filter")
         filter = self.filter.Get(ctx.guild.id)
 
         # Lower, Trim, Remove Duplicates
@@ -77,7 +78,6 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
         proceed = [word for word in list(dict.fromkeys(words)) if word not in filter]
         ignored = [word for word in words if word not in proceed]
 
-        embed = discord.Embed(title="Add words to the filter", color=color)
         if len(proceed) > 0:
             self.filter.Add(ctx.guild.id, proceed)
             embed.add_field(name="✅ Success", value=" ".join(["`{0}`".format(word) for word in proceed]), inline=True)
@@ -90,13 +90,13 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     @filter_group.command(name="remove", description="Remove words from the filter.")
     @commands.has_guild_permissions(manage_messages=True)
     async def filter_remove(self, ctx, *words):
+        embed = discord.Embed(color=color, title="Remove words from the filter")
         filter = self.filter.Get(ctx.guild.id)
 
         # Remove Duplicates
         proceed = [word for word in list(dict.fromkeys(words)) if word in filter]
         ignored = [word for word in words if word not in proceed]
 
-        embed = discord.Embed(title="Remove words from the filter", color=color)
         if len(proceed) > 0:
             self.filter.Remove(ctx.guild.id, proceed)
             embed.add_field(name="✅ Success", value=" ".join(["`{0}`".format(word) for word in proceed]), inline=True)
@@ -109,11 +109,12 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     @filter_group.command(name="check", description="Check if the following text or message violates the filter for this server.")
     @commands.has_guild_permissions(manage_messages=True)
     async def filter_check(self, ctx, message:typing.Optional[discord.Message]=None):
+        embed = discord.Embed(color=color, title="Filter check")
+        
         if message == None:
             message = ctx.message
 
         triggered = self.CheckMessage(message, True)
-        embed = discord.Embed(title="Filter check", color=color)
 
         if len(triggered) > 0:
             embed.description = "Triggered words:\n" + " ".join(["`{0}`".format(word) for word in triggered])
