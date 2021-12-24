@@ -72,7 +72,7 @@ token = "YOUR TOKEN HERE"
 `Bot/config/client.py`
 ```py
 # Your Discord ID
-owner_id = 261205439121719298
+owner_id = 0
 
 # Bot Commands Prefix
 command_prefix = "."
@@ -101,12 +101,13 @@ log_dateformat = "%m/%d/%Y %I:%M:%S %p"
 1. Install [the following libraries](#versions)
 2. Clone or save this repository anywhere you would like to have it.
 3. Add [the missing file with your secret token](#missing-files)
-4. (Optional) Modify the [config](#config-files) in the way you like.
+4. *(Optional) Modify the [config files](#config-files) in the way you like.*
 5. Open your terminal (CMD or PowerShell).
 6. Go to the repository you have cloned.
 7. When you are in `discord-py-Bot-Sample` - Run `Bot/main.py`.
-8. Invite the bot to your server.
-9. (Optional) Add `BetterHelp` & `Filter` modules to the preload list using the `preload add` command.
+8. Invite the bot to your server [Example](https://discord.com/developers/docs/topics/oauth2#bot-authorization-flow-url-example).
+9. *(Optional) Add `BetterHelp` & `Filter` modules to the preload list using the `preload add` command.*
+10. *(Optional) Investigate all available commands [here](#commands) or using the `help` command.*
 
 Members can manage modules with the `Administrator` permission.
 
