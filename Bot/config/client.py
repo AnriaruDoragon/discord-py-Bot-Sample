@@ -1,5 +1,5 @@
 # Your Discord ID
-owner_id = 261205439121719298
+owner_id = 0
 
 # Bot Commands Prefix
 command_prefix = "."
