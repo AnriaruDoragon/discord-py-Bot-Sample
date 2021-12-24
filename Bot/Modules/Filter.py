@@ -14,7 +14,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
         filter = self.filter.Get(message.guild.id)
         triggered = []
 
-        if len(filter) > 0:
+        if filter:
             content = misc.GetEntireContent(message)
             for word in filter:
                 if word.lower() in content:
@@ -32,7 +32,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
         if message.author.permissions_in(message.channel).manage_messages:
             return
 
-        if len(self.CheckMessage(message)) > 0:
+        if self.CheckMessage(message):
             try:
                 await message.delete()
             except Exception as error:
@@ -49,7 +49,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
     async def filter_list(self, ctx):
         filter = self.filter.Get(ctx.guild.id)
 
-        if len(filter) > 0:
+        if filter:
             messages = misc.SplitString("Banned words for `{0}`:\n{1}".format(ctx.guild.name, " ".join(["`{0}`".format(word) for word in filter])))
             await ctx.channel.trigger_typing()
             for message in messages:
@@ -78,10 +78,10 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
         proceed = [word for word in list(dict.fromkeys(words)) if word not in filter]
         ignored = [word for word in words if word not in proceed]
 
-        if len(proceed) > 0:
+        if proceed:
             self.filter.Add(ctx.guild.id, proceed)
             embed.add_field(name="✅ Success", value=" ".join(["`{0}`".format(word) for word in proceed]), inline=True)
-        if len(ignored) > 0:
+        if ignored:
             embed.add_field(name="❌ Ignored", value=" ".join(["`{0}`".format(word) for word in ignored]), inline=True)
             embed.set_footer(text="Ignored are the words that are already in the filter.")
 
@@ -97,10 +97,10 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
         proceed = [word for word in list(dict.fromkeys(words)) if word in filter]
         ignored = [word for word in words if word not in proceed]
 
-        if len(proceed) > 0:
+        if proceed:
             self.filter.Remove(ctx.guild.id, proceed)
             embed.add_field(name="✅ Success", value=" ".join(["`{0}`".format(word) for word in proceed]), inline=True)
-        if len(ignored) > 0:
+        if ignored:
             embed.add_field(name="❌ Ignored", value=" ".join(["`{0}`".format(word) for word in ignored]), inline=True)
             embed.set_footer(text="Ignored are the words that were not in the filter.")
 
@@ -116,7 +116,7 @@ class Filter(commands.Cog, name="Filter", description="Manage server messages fi
 
         triggered = self.CheckMessage(message, True)
 
-        if len(triggered) > 0:
+        if triggered:
             embed.description = "Triggered words:\n" + " ".join(["`{0}`".format(word) for word in triggered])
         else:
             embed.description = "It seems okay to me."
