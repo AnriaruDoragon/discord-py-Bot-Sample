@@ -15,7 +15,7 @@ Thanks 💜💙
   - [Libraries & Versions](#versions)
   - [Missing files](#missing-files)
   - [Config files](#config-files)
-  - [Instalation and usage](#instalation-and-usage)
+  - **[Instalation and usage 🛠️](#instalation-and-usage)**
 - [P.S.](#ps)
 
 # Discord bot sample on discord.py
