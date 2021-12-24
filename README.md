@@ -106,6 +106,7 @@ log_dateformat = "%m/%d/%Y %I:%M:%S %p"
 6. Go to the repository you have cloned.
 7. When you are in `discord-py-Bot-Sample` - Run `Bot/main.py`.
 8. Invite the bot to your server.
+9. (Optional) Add `BetterHelp` & `Filter` modules to the preload list using the `preload add` command.
 
 Members can manage modules with the `Administrator` permission.
 
