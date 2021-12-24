@@ -14,7 +14,7 @@ class PreloadModules:
         try:
             self.db.cursor.execute("""SELECT "Module" FROM "PreloadModules";""")
             results = self.db.cursor.fetchall()
-            if len(results) > 0:
+            if results:
                 # Convert [('1',), ('2',)] into ['1', '2']
                 return [word for result in results for word in result]
             else:

@@ -38,11 +38,11 @@ async def modules_list(ctx):
     # If it's a .py file and not registered as a module by the client, it makes a list out of their names.
     modules = [module[:-3] for module in os.listdir("Bot/Modules") if module.endswith(".py") and module[:-3] not in loaded]
 
-    if len(loaded) > 0:
+    if loaded:
         embed.add_field(name="✅ Loaded", value="\n".join(["`{0}`".format(module) for module in loaded]), inline=True)
-    if len(modules) > 0:
+    if modules:
         embed.add_field(name="❌ Unloaded", value="\n".join(["`{0}`".format(module) for module in modules]), inline=True)
-    if len(embed.fields) == 0:
+    if not embed.fields:
         embed.description = "No modules found."
 
     await ctx.reply(embed=embed)

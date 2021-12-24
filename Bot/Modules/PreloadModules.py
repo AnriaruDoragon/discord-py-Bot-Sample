@@ -11,7 +11,7 @@ class PreloadModules(commands.Cog, name="PreloadModules", description="Manage pr
         self.preload = PreloadDB(client.data)
 
         modules = self.preload.Get()
-        if len(modules) > 0:
+        if modules:
             for module in modules:
                 try:
                     self.client.load_extension("Modules.{0}".format(module))
@@ -32,7 +32,7 @@ class PreloadModules(commands.Cog, name="PreloadModules", description="Manage pr
         embed = discord.Embed(color=color, title="Preload Modules")
         preloads = self.preload.Get()
 
-        if len(preloads) > 0:
+        if preloads:
             embed.description = "\n".join(["`{0}`".format(module) for module in preloads])
         else:
             embed.description = "Not found."
