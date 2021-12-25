@@ -7,7 +7,9 @@ from config.secret import token
 from config.logging import *
 from config.client import *
 
-logging.basicConfig(filename=log_file, filemode="w", encoding=log_encoding, format=log_format, datefmt=log_dateformat, level=logging.INFO)
+if log_enable:
+    logging.basicConfig(filename=log_file, filemode=log_mode, encoding=log_encoding, format=log_format, datefmt=log_dateformat, level=logging.INFO)
+
 client = commands.Bot(command_prefix=command_prefix, owner_id=owner_id)
 client.data = Database()
 
@@ -120,8 +122,11 @@ async def reload_module(ctx, module:str):
 @client.command(name="log", description="Get logs for the current session.")
 @commands.has_guild_permissions(administrator=True)
 async def get_logs(ctx):
-    await ctx.reply(file=discord.File(log_file, "client.log"))
-    logging.info("{0} - Log request.".format(ctx.author.id))
+    if log_enable:
+        await ctx.reply(file=discord.File(log_file, "client.log"))
+        logging.info("{0} - Log request.".format(ctx.author.id))
+    else:
+        await ctx.reply("Logging is disabled.")
 
 while True:
     try:
