@@ -80,7 +80,7 @@ command_prefix = "."
 # Bot Embeds Color
 color = 0x00FFFF
 ```
-`Bot/config/logging.py` ([Logging Config FAQ](Bot\Logs\README.md))
+`Bot/config/logging.py` ([Logging Config FAQ](https://github.com/AnriaruDoragon/discord-py-Bot-Sample/blob/2ddb1b52b545cc410fae040f03933a462daa663e/Bot/Logs/README.md))
 ```py
 # Logging to the file
 log_enable = True
