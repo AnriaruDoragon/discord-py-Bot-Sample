@@ -1,8 +1,10 @@
 # Logging guide
 `Bot/config/logging.py` - Logging config
 ```py
-# Log to the file
+# Logging to the file
 log_enable = True
+
+# Logging to a single file
 _log_const = False
 
 # Logging File Place & Name
@@ -12,7 +14,7 @@ else:
     from datetime import datetime
     log_file = "Bot/Logs/{0}.log".format(datetime.now().strftime("%m%d%Y-%H%M%S"))
 
-# Log file mode (w - rewrite, a - append)
+# Logging file mode (w - rewrite, a - append)
 log_mode = "w"
 
 # Logging File Encoding
