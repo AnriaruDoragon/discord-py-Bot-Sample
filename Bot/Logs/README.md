@@ -32,5 +32,5 @@ log_dateformat = "%m/%d/%Y %I:%M:%S %p"
   - A: Change `True` in `log_enable` to `False`.
 - **Q: I want to save logs in a single file.**
   - A: Change `False` in `_log_const` to `True`.
-- **Q: Old log file overwrites when I launch the bot again. I want to keep my logs for all sessions in a single file.**
+- **Q: Old log file overwrites when I relaunch the bot. I want to keep my logs for all sessions in a single file.**
   - A: If you followed the previous method - change `log_mode` from `w` to `a`.
