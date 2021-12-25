@@ -46,8 +46,9 @@ class BetterHelpCommand(commands.HelpCommand):
     async def send_group_help(self, group):
         embed = discord.Embed(color=color, title="{0.context.bot.user.name} Help {1.qualified_name}".format(self, group))
         embed.set_footer(text="Type `{0.clean_prefix}help <command/group>` for more info on a command/group.".format(self))
-        if group.commands:
-            embed.description = "\n".join(["`{0}` - {1}".format(self.get_command_signature(command, only_name=True, is_short=True)[:25], command.description[:50]) for command in group.commands])
+        filtered = await self.filter_commands(group.commands, sort=True)
+        if filtered:
+            embed.description = "\n".join(["`{0}` - {1}".format(self.get_command_signature(c, only_name=True, is_short=True)[:25], c.description[:50]) for c in filtered])
         else:
             embed.description = "It's silent here..."
 

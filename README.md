@@ -24,7 +24,7 @@ This is a simple bot for your discord servers managed by cogs (modules).
 ### Preinstalled modules
 | Module         | Description                                                                                                                                                                                                                                                                                      |
 |:--------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| PreloadModules | Support module for cogs management. This module loads on start and loads others modules from the preload list. Only members with `Administrator` permission can manage preload list.                                                                                                             |
+| PreloadModules | Support module for cogs management. This module loads itself on start and loads others modules from the preload list. Only members with `Administrator` permission can manage preload list.                                                                                                      |
 | BetterHelp     | Provides a better command help system with embeds.                                                                                                                                                                                                                                               |
 | Filter         | Allows you to manage messages filter for specific servers. Every server (guild) has its own messages filter and will delete the forbidden words if the author doesn't have the `Manage Messages` permission for this server. Only members with `Manage Messages` permission can edit the filter. |
 
@@ -98,9 +98,9 @@ log_dateformat = "%m/%d/%Y %I:%M:%S %p"
 ```
 
 ### Instalation and usage
-1. Install [the following libraries](#versions)
+1. Install [the following libraries](#versions).
 2. Clone or save this repository anywhere you would like to have it.
-3. Add [the missing file with your secret token](#missing-files)
+3. Add [the missing file with your secret token](#missing-files).
 4. *(Optional) Modify the [config files](#config-files) in the way you like.*
 5. Open your terminal (CMD or PowerShell).
 6. Go to the repository you have cloned.
@@ -114,8 +114,6 @@ Members can manage modules with the `Administrator` permission.
 Members can use filter module commands with the `Manage Messages` permission.
 
 ## P.S.
-You can do whatever you want with this repo.
-
 But if it's not hard for you, follow me on [Twitter](https://twitter.com/AnriaruDoragon) ([Work Acc](https://twitter.com/AnriaruDoragon_))
 
 Good luck!

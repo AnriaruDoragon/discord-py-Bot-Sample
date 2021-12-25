@@ -59,6 +59,12 @@ class PreloadModules(commands.Cog, name="PreloadModules", description="Manage pr
         else:
             self.preload.Add(module)
             embed.description = "The module `{0}` has been added to the preload list.".format(module)
+            try:
+                self.client.load_extension("Modules.{0}".format(module))
+            except BaseException as error:
+                logging.warn(error)
+            else:
+                embed.description += "\n**Loaded successfully.**"
 
         await ctx.reply(embed=embed)
     
